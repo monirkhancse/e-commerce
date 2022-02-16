@@ -1,0 +1,90 @@
+﻿@model WebApplication1.Models.Store
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="col-md-12">
+    <div id="boxDivId" class="box box-info box-solid">
+        <div class="box-header with-border">
+            <h3 class="box-title" style="text-align:center">
+                <span style="clear:both;">
+                    <b>
+                        Stores : New Store
+                    </b>
+                </span>
+            </h3>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-8">
+                     <br />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.store_no, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.store_no, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.store_no, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.store_name, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.store_name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.store_name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.address, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.manager_name, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.manager_name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.manager_name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="box-footer">
+                        <div class="row">
+                            <div class="col-md-2">
+                                 <br />
+                                <a class="form-group btn btn-danger btn-block fa fa-arrow-circle-left" href="/Stores/Index"><span> Back</span></a>
+                            </div>
+                            <div class="col-md-6">
+
+                            </div>
+                            <div class="col-lg-4 col-md-4">
+                                 <br />
+                                <button class="form-group btn btn-primary btn-block" value="Create" type="submit" id="btnPRsave">
+                                    <i class="fa fa-plus"></i>
+                                    <span>Create Store</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            </div>
+        </div>
+    </div>
+}

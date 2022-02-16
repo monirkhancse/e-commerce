@@ -1,0 +1,393 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MvcProjectDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Product_Category" FromRole="Category" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustomerId" />
+    </Key>
+    <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DoB" Type="DateTime" Precision="3" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OrderId" Type="Int32" />
+    <NavigationProperty Name="Order" Relationship="Self.FK_Customer_Order" FromRole="Customer" ToRole="Order" />
+    <NavigationProperty Name="Sales" Relationship="Self.FK_Sale_Customer" FromRole="Customer" ToRole="Sale" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Customers" Relationship="Self.FK_Customer_Order" FromRole="Order" ToRole="Customer" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="buying_price" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="selling_price" Type="Decimal" Precision="18" Scale="8" />
+    <Property Name="CategoryId" Type="Int32" />
+    <NavigationProperty Name="Category" Relationship="Self.FK_Product_Category" FromRole="Product" ToRole="Category" />
+    <NavigationProperty Name="Sales" Relationship="Self.FK_Sale_Product" FromRole="Product" ToRole="Sale" />
+    <Property Name="Image" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Purchases" Relationship="MvcProjectDBModel.FK_Purchase_Product" FromRole="Product" ToRole="Purchase" />
+    <NavigationProperty Name="Stocks" Relationship="MvcProjectDBModel.FK_Stock_Product" FromRole="Product" ToRole="Stock" />
+  </EntityType>
+  <EntityType Name="Purchase">
+    <Key>
+      <PropertyRef Name="PurchaseId" />
+    </Key>
+    <Property Name="PurchaseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductId" Type="Int32" />
+    <Property Name="SupplierId" Type="Int32" />
+    <Property Name="StoreId" Type="Int32" />
+    <Property Name="purchase_date" Type="DateTime" Precision="0" />
+    <Property Name="unit_price" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="quantity" Type="Int32" />
+    <Property Name="total_price" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="vat" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="grand_total_price" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="stock_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="memo_no" Type="Int32" />
+    <Property Name="comments" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Product" Relationship="MvcProjectDBModel.FK_Purchase_Product" FromRole="Purchase" ToRole="Product" />
+    <NavigationProperty Name="Store" Relationship="MvcProjectDBModel.FK_Purchase_Store" FromRole="Purchase" ToRole="Store" />
+    <NavigationProperty Name="Supplier" Relationship="MvcProjectDBModel.FK_Purchase_Supplier" FromRole="Purchase" ToRole="Supplier" />
+    <NavigationProperty Name="Warehouses" Relationship="MvcProjectDBModel.FK_Warehouse_Purchase" FromRole="Purchase" ToRole="Warehouse" />
+  </EntityType>
+  <EntityType Name="Sale">
+    <Key>
+      <PropertyRef Name="SaleId" />
+    </Key>
+    <Property Name="SaleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductId" Type="Int32" />
+    <Property Name="CustomerId" Type="Int32" />
+    <Property Name="StoreId" Type="Int32" />
+    <Property Name="sale_date" Type="DateTime" Precision="0" />
+    <Property Name="rate" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="quantity" Type="Int32" />
+    <Property Name="total_price" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="vat" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="discount" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="net_total_price" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="stock_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="memo_no" Type="Int32" />
+    <Property Name="comments" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_Sale_Customer" FromRole="Sale" ToRole="Customer" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Sale_Product" FromRole="Sale" ToRole="Product" />
+    <NavigationProperty Name="Store" Relationship="Self.FK_Sale_Store" FromRole="Sale" ToRole="Store" />
+  </EntityType>
+  <EntityType Name="SalesDetail">
+    <Key>
+      <PropertyRef Name="SalesDetailsID" />
+    </Key>
+    <Property Name="SalesDetailsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="PurchasePrice" Type="Int32" />
+    <Property Name="SalesPrice" Type="Int32" />
+  </EntityType>
+  <EntityType Name="ShopRegistration">
+    <Key>
+      <PropertyRef Name="ShopRegistrationID" />
+    </Key>
+    <Property Name="ShopRegistrationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ShopName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Proprietor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RegistrationDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Stock">
+    <Key>
+      <PropertyRef Name="StockId" />
+    </Key>
+    <Property Name="StockId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductId" Type="Int32" />
+    <Property Name="StoreId" Type="Int32" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="Stutus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Product" Relationship="MvcProjectDBModel.FK_Stock_Product" FromRole="Stock" ToRole="Product" />
+    <NavigationProperty Name="Store" Relationship="MvcProjectDBModel.FK_Stock_Store" FromRole="Stock" ToRole="Store" />
+  </EntityType>
+  <EntityType Name="Store">
+    <Key>
+      <PropertyRef Name="StoreId" />
+    </Key>
+    <Property Name="StoreId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="store_no" Type="Int32" />
+    <Property Name="store_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="manager_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Sales" Relationship="Self.FK_Sale_Store" FromRole="Store" ToRole="Sale" />
+    <NavigationProperty Name="Purchases" Relationship="MvcProjectDBModel.FK_Purchase_Store" FromRole="Store" ToRole="Purchase" />
+    <NavigationProperty Name="Stocks" Relationship="MvcProjectDBModel.FK_Stock_Store" FromRole="Store" ToRole="Stock" />
+  </EntityType>
+  <EntityType Name="Supplier">
+    <Key>
+      <PropertyRef Name="SupplierId" />
+    </Key>
+    <Property Name="SupplierId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SupplierName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Company" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Purchases" Relationship="MvcProjectDBModel.FK_Purchase_Supplier" FromRole="Supplier" ToRole="Purchase" />
+  </EntityType>
+  <EntityType Name="TblUser">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserPass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TblUserRoles" Relationship="Self.FK_TblUserRole_TblUser" FromRole="TblUser" ToRole="TblUserRole" />
+  </EntityType>
+  <EntityType Name="TblUserRole">
+    <Key>
+      <PropertyRef Name="UserRoleID" />
+    </Key>
+    <Property Name="UserRoleID" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="PageName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsCreate" Type="Boolean" />
+    <Property Name="IsRead" Type="Boolean" />
+    <Property Name="IsUpdate" Type="Boolean" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <NavigationProperty Name="TblUser" Relationship="Self.FK_TblUserRole_TblUser" FromRole="TblUserRole" ToRole="TblUser" />
+  </EntityType>
+  <Association Name="FK_Product_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Customer_Order">
+    <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+    <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="OrderId" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sale_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="Sale">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sale_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="Sale">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sale_Store">
+    <End Role="Store" Type="Self.Store" Multiplicity="0..1" />
+    <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Store">
+        <PropertyRef Name="StoreId" />
+      </Principal>
+      <Dependent Role="Sale">
+        <PropertyRef Name="StoreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblUserRole_TblUser">
+    <End Role="TblUser" Type="Self.TblUser" Multiplicity="0..1" />
+    <End Role="TblUserRole" Type="Self.TblUserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblUser">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="TblUserRole">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MvcProjectDBEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Categories" EntityType="Self.Category" />
+    <EntitySet Name="Customers" EntityType="Self.Customer" />
+    <EntitySet Name="Orders" EntityType="Self.Order" />
+    <EntitySet Name="Products" EntityType="Self.Product" />
+    <EntitySet Name="Purchases" EntityType="Self.Purchase" />
+    <EntitySet Name="Sales" EntityType="Self.Sale" />
+    <EntitySet Name="SalesDetails" EntityType="Self.SalesDetail" />
+    <EntitySet Name="ShopRegistrations" EntityType="Self.ShopRegistration" />
+    <EntitySet Name="Stocks" EntityType="Self.Stock" />
+    <EntitySet Name="Stores" EntityType="Self.Store" />
+    <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
+    <EntitySet Name="TblUsers" EntityType="Self.TblUser" />
+    <EntitySet Name="TblUserRoles" EntityType="Self.TblUserRole" />
+    <AssociationSet Name="FK_Product_Category" Association="Self.FK_Product_Category">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Customer_Order" Association="Self.FK_Customer_Order">
+      <End Role="Order" EntitySet="Orders" />
+      <End Role="Customer" EntitySet="Customers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sale_Customer" Association="Self.FK_Sale_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Sale" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sale_Product" Association="Self.FK_Sale_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Sale" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sale_Store" Association="Self.FK_Sale_Store">
+      <End Role="Store" EntitySet="Stores" />
+      <End Role="Sale" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblUserRole_TblUser" Association="Self.FK_TblUserRole_TblUser">
+      <End Role="TblUser" EntitySet="TblUsers" />
+      <End Role="TblUserRole" EntitySet="TblUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Purchase_Product" Association="MvcProjectDBModel.FK_Purchase_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Purchase" EntitySet="Purchases" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stock_Product" Association="MvcProjectDBModel.FK_Stock_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Stock" EntitySet="Stocks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Purchase_Store" Association="MvcProjectDBModel.FK_Purchase_Store">
+      <End Role="Store" EntitySet="Stores" />
+      <End Role="Purchase" EntitySet="Purchases" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Purchase_Supplier" Association="MvcProjectDBModel.FK_Purchase_Supplier">
+      <End Role="Supplier" EntitySet="Suppliers" />
+      <End Role="Purchase" EntitySet="Purchases" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stock_Store" Association="MvcProjectDBModel.FK_Stock_Store">
+      <End Role="Store" EntitySet="Stores" />
+      <End Role="Stock" EntitySet="Stocks" />
+    </AssociationSet>
+    <EntitySet Name="Warehouses" EntityType="MvcProjectDBModel.Warehouse" />
+    <AssociationSet Name="FK_Warehouse_Purchase" Association="MvcProjectDBModel.FK_Warehouse_Purchase">
+      <End Role="Purchase" EntitySet="Purchases" />
+      <End Role="Warehouse" EntitySet="Warehouses" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="FK_Purchase_Product">
+    <End Type="MvcProjectDBModel.Product" Role="Product" Multiplicity="0..1" />
+    <End Type="MvcProjectDBModel.Purchase" Role="Purchase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="Purchase">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stock_Product">
+    <End Type="MvcProjectDBModel.Product" Role="Product" Multiplicity="0..1" />
+    <End Type="MvcProjectDBModel.Stock" Role="Stock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="Stock">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Purchase_Store">
+    <End Type="MvcProjectDBModel.Store" Role="Store" Multiplicity="0..1" />
+    <End Type="MvcProjectDBModel.Purchase" Role="Purchase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Store">
+        <PropertyRef Name="StoreId" />
+      </Principal>
+      <Dependent Role="Purchase">
+        <PropertyRef Name="StoreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Purchase_Supplier">
+    <End Type="MvcProjectDBModel.Supplier" Role="Supplier" Multiplicity="0..1" />
+    <End Type="MvcProjectDBModel.Purchase" Role="Purchase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier">
+        <PropertyRef Name="SupplierId" />
+      </Principal>
+      <Dependent Role="Purchase">
+        <PropertyRef Name="SupplierId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stock_Store">
+    <End Type="MvcProjectDBModel.Store" Role="Store" Multiplicity="0..1" />
+    <End Type="MvcProjectDBModel.Stock" Role="Stock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Store">
+        <PropertyRef Name="StoreId" />
+      </Principal>
+      <Dependent Role="Stock">
+        <PropertyRef Name="StoreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Warehouse">
+    <Key>
+      <PropertyRef Name="warehouseID" />
+    </Key>
+    <Property Name="warehouseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="warehouseNo" Type="Int32" />
+    <Property Name="warehouseName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="warehouseManager" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PurchaseId" Type="Int32" />
+    <NavigationProperty Name="Purchase" Relationship="MvcProjectDBModel.FK_Warehouse_Purchase" FromRole="Warehouse" ToRole="Purchase" />
+  </EntityType>
+  <Association Name="FK_Warehouse_Purchase">
+    <End Type="MvcProjectDBModel.Purchase" Role="Purchase" Multiplicity="0..1" />
+    <End Type="MvcProjectDBModel.Warehouse" Role="Warehouse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Purchase">
+        <PropertyRef Name="PurchaseId" />
+      </Principal>
+      <Dependent Role="Warehouse">
+        <PropertyRef Name="PurchaseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

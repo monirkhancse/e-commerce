@@ -1,0 +1,67 @@
+﻿@model IEnumerable<WebApplication1.Models.Store>
+
+@{
+    ViewBag.Title = "Index";
+}
+<b>Search By:</b> @Html.RadioButton("searchBy", "store_name", true) <text>Store Name</text>
+@Html.RadioButton("searchBy", "Address") <text>Address</text>
+<div class="pull-right">
+    @Html.TextBox("search", null, new { id = "txtSearch", placeholder = "Search.." })
+    <button type="submit" value="Search" style="background: #2196F3; color: white; font-size: 17px; border: 1px solid grey; border-left: none; "><i class="fa fa-search"></i></button>
+</div>
+<br /><br />
+<div class="col-sm-12">
+    @Html.ActionLink(" New Store", "Create", "Stores", new { }, new { @class = "btn btn-primary  fa fa-plus" })
+</div>
+<hr />
+<br />
+<div>
+    @ViewBag.message
+</div>
+<div class="table-responsive dataTables_scroll">
+    <div class="box box-primary">
+        <div class="box-body">
+            <table border="1" class="table table-bordered table-hover table-striped table-condensed">
+                <tr style="font-size:14px">
+                    <th>
+                        @Html.DisplayNameFor(model => model.store_no)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.store_name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.address)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.manager_name)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.store_no)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.store_name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.address)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.manager_name)
+                        </td>
+                        <td>
+                            @Html.ActionLink(" Edit", "Edit", new { id = item.StoreId }, new { @class = "btn btn-primary fa fa-pencil" }) |
+                            @Html.ActionLink(" Details", "Details", new { id = item.StoreId }, new { @class = "btn btn-success fa fa-info" }) |
+                            @Html.ActionLink(" Delete", "Delete", new { id = item.StoreId }, new { @class = "btn btn-danger fa fa-trash-o" }) |
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>

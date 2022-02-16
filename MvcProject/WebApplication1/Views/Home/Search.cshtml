@@ -1,0 +1,109 @@
+﻿@model IEnumerable<WebApplication1.Models.Product>
+@{ Layout = null;
+    ViewBag.Title = "Search";
+    var db = new WebApplication1.Models.MvcProjectDBEntities1();
+    //var sections = db.Categories.ToList();
+    //var slf = db.Shelves.ToList();
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+
+<div style="margin-left:400px;padding-top:100px">
+    <div class="padding-md" style="margin-top:-1%;">
+        <div class="panel panel-default">
+            <div id="main-container">
+                <form action="/Home/Search" method="post" class="row">
+                    <br />
+                    <div class="form-group" style="width:700px">
+                        <div class="panel-heading">
+                            <h4 style="text-align:center; color:#ff0000;font-size:30px"><strong><i class="fa fa-search"></i>&nbsp;Product Detail Search</strong></h4>
+                        </div>
+                        <br>
+
+                        <label class="col-md-10"><span style="color:#f7165b;font-size:20px">Product Detail :</span> </label><input type="text" name="Name" class="form-control" />
+
+                    </div>
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i>Search</button>
+                    </div>
+                    </form>
+            </div>
+            <br><br>
+            <div class="ibox float-e-margins">
+                <div class="ibox-content text-center p-md">
+                    <div class="padding-md">
+                        <div class="row">
+                            <div class="col-md-12 no-padding">
+                                <div class="col-md-4">
+                                    <div class="col-xs-6 col-sm-12 col-md-6 text-center">
+                                    </div><!-- /form-group -->
+                                </div><!-- /.col --><br /><br />
+                                <div class="col-md-4" style="width:1200px">
+                                    <label class="control-label">
+                                    <strong style="color:#ff6a00;">
+                                        <h4 style="margin-left:10px;font-size:20px">Welcome For Room information</h4></strong></label>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="col-md-5">
+                                        <div class="form-group" style="text-align: left; padding-left:18%;">
+                                            <div class="wrapper wrapper-content">
+                                                <div class="row">
+                                                    <!--   <div class="col-lg-12" >-->
+                                                    <!-- class="ibox float-e-margins" style="border-top: 0px solid #e7eaec; " -->
+                                                    <div class="table-responsive" id="data_load" style="margin-left:-20%;">
+                                                        <table class="table" style="width:400px">
+                                                            <!--  table-striped  table-hover table-bordered -->
+                                                            <tbody style="color:black;">
+                                                                @foreach (var product in Model)
+                                                                {
+                                                                    var gen = "";
+                                                                    if (product.ProductId == 1) { gen = "Programming"; }
+                                                                    else { gen = "Others"; }
+                                                                    //var section = (from o in sections where o.category_id == roomDetail.RoomTypeNo select o).FirstOrDefault();
+                                                                    //var sectionName = section == null ? "N/A" : section.category_name;@*<tr>
+                                                    <tr>
+                                                        <td><b>CategoryId</b></td>
+                                                        <td>:</td>
+                                                        <td>@product.CategoryId</td>
+                                                    </tr>
+                                                                    <tr>
+                                                                        <td><b>ProductId</b></td>
+                                                                        <td>:</td>
+                                                                        <td>@product.ProductId</td>
+                                                                    </tr>
+
+                                                                                    <tr>
+                                                                                        <td><b>ProductName</b></td>
+                                                                                        <td>:</td>
+                                                                                        <td>@product.ProductName</td>
+
+                                                                                    </tr>
+                                                                                                    <tr>
+                                                                                                        <td><b>Purchases</b></td>
+                                                                                                        <td>:</td>
+                                                                                                        <td>@product.Purchases</td>
+                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                        <td><b>Sales</b></td>
+                                                                                                                        <td>:</td>
+                                                                                                                        <td>@product.Sales</td>
+                                                                                                                    </tr>
+}
+
+                                                            </tbody>
+                                                        </table><br /><br />
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- /form-group -->
+                                    </div><!-- /.col -->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

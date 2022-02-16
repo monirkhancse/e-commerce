@@ -1,0 +1,107 @@
+﻿@model IEnumerable<WebApplication1.Models.Purchase>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="col-md-12">
+    @Html.ActionLink(" New Purchase", "Create", "Purchases", new { }, new { @class = "btn btn-primary  fa fa-plus" })
+</div>
+<br />
+<br />
+<div>
+    <div class="box box-primary">
+        <div class="box-body">
+            <table border="1" class="table table-bordered table-hover table-striped table-condensed">
+                <tr style="font-size:14px">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.purchase_date)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.unit_price)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.quantity)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.total_price)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.vat)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.grand_total_price)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.stock_status)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.memo_no)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.comments)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Product.ProductName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Store.store_name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Supplier.SupplierName)
+                            </th>
+                            <th></th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.purchase_date)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.unit_price)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.quantity)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.total_price)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.vat)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.grand_total_price)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.stock_status)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.memo_no)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.comments)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Product.ProductName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Store.store_name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Supplier.SupplierName)
+                                </td>
+                                <td>
+                                    @*@Html.ActionLink(" Edit", "Edit", new { id = item.PurchaseId }, new { @class = "btn btn-primary fa fa-pencil" }) |*@
+                                    @Html.ActionLink(" Details", "Details", new { id = item.PurchaseId }, new { @class = "btn btn-success fa fa-info" }) |
+                                    @Html.ActionLink(" Delete", "Delete", new { id = item.PurchaseId }, new { @class = "btn btn-danger fa fa-trash-o" }) |
+                                </td>
+                            </tr>
+                        }
+
+                 </table>
+        </div>
+    </div>
+</div>

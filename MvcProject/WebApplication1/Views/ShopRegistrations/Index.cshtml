@@ -1,0 +1,89 @@
+﻿@model IEnumerable<WebApplication1.Models.ShopRegistration>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<b>Search By:</b> @Html.RadioButton("searchBy", "UserName", true) <text>User Name</text>
+@Html.RadioButton("searchBy", "Phone") <text>Phone Number</text>
+<div class="pull-right">
+    @Html.TextBox("search", null, new { id = "txtSearch", placeholder = "Search.." })
+    <button type="submit" value="Search" style="background: #2196F3; color: white; font-size: 17px; border: 1px solid grey; border-left: none; "><i class="fa fa-search"></i></button>
+</div>
+<br /><br />
+<div class="col-sm-12">
+    <a href="/ShopRegistrations/Create" class="btn btn-info "><i class="fa fa-plus"></i> New Register</a>
+</div>
+<hr />
+@{
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-body">
+                        <table border="1" class="table table-bordered table-hover table-striped table-responsive">
+                            <tr style="font-size:16px">
+                                <th>
+                                    @Html.DisplayNameFor(model => model.UserName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Password)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ShopName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Proprietor)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Phone)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Location)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.RegistrationDate)
+                                </th>
+                                <th></th>
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.UserName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Password)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ShopName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Proprietor)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Phone)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Location)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.RegistrationDate)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink(" Edit", "Edit", new { id = item.ShopRegistrationID }, new { @class = "btn btn-primary fa fa-pencil" }) |
+                                        @Html.ActionLink(" Details", "Details", new { id = item.ShopRegistrationID }, new { @class = "btn btn-success fa fa-info" }) |
+                                        @Html.ActionLink(" Delete", "Delete", new { id = item.ShopRegistrationID }, new { @class = "btn btn-danger fa fa-trash-o" }) |
+                                    </td>
+                                </tr>
+                            }
+
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+}

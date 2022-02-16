@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7edd70926a2248a49f3dffe04bc19522" Name="Diagram1">
+        <EntityTypeShape EntityType="MvcProjectDBModel.Category" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="MvcProjectDBModel.Customer" Width="1.5" PointX="3" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MvcProjectDBModel.Order" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MvcProjectDBModel.Product" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MvcProjectDBModel.Purchase" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MvcProjectDBModel.Sale" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="MvcProjectDBModel.SalesDetail" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MvcProjectDBModel.ShopRegistration" Width="1.5" PointX="10.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MvcProjectDBModel.Stock" Width="1.5" PointX="5.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MvcProjectDBModel.Store" Width="1.5" PointX="2.625" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MvcProjectDBModel.Supplier" Width="1.5" PointX="10.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MvcProjectDBModel.TblUser" Width="1.5" PointX="5.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MvcProjectDBModel.TblUserRole" Width="1.5" PointX="8" PointY="7" IsExpanded="true" />
+        <AssociationConnector Association="MvcProjectDBModel.FK_Product_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="MvcProjectDBModel.FK_Customer_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="MvcProjectDBModel.FK_Sale_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="MvcProjectDBModel.FK_Sale_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="MvcProjectDBModel.FK_Sale_Store" ManuallyRouted="false" />
+        <AssociationConnector Association="MvcProjectDBModel.FK_TblUserRole_TblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="MvcProjectDBModel.FK_Purchase_Product" />
+        <AssociationConnector Association="MvcProjectDBModel.FK_Stock_Product" />
+        <AssociationConnector Association="MvcProjectDBModel.FK_Purchase_Store" />
+        <AssociationConnector Association="MvcProjectDBModel.FK_Purchase_Supplier" />
+        <AssociationConnector Association="MvcProjectDBModel.FK_Stock_Store" />
+        <EntityTypeShape EntityType="MvcProjectDBModel.Warehouse" Width="1.5" PointX="8.5" PointY="11" />
+        <AssociationConnector Association="MvcProjectDBModel.FK_Warehouse_Purchase" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
